@@ -10,7 +10,7 @@
     ],
     "require": {
         "php": "^8.0",
-        "spatie/laravel-multitenancy": "^2.3",
+        "spatie/laravel-multitenancy": "^2.3"
     },
     "autoload": {
         "psr-4":{
