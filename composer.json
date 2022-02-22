@@ -1,0 +1,22 @@
+{
+    "name": "elrod/laravel-multitenancy-impersonate",
+    "description": "registra las actividades de los usuarios de su aplicaci\u0000n.
+    "authors": [
+        {
+            "name": "Victor Yoalli",
+            "email": "victoryoalli@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "spatie/laravel-multitenancy": "^2.3",
+    },
+
+    "autoload": {
+        "psr-4": {
+            "elrod\\MultitenancyImpersonate\\": "src"
+        }
+    },
+
+}
