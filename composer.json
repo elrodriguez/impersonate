@@ -1,22 +1,20 @@
+
 {
     "name": "elrod/laravel-multitenancy-impersonate",
     "description": "Laravel Multitenancy Impersonation from landlord to tenant",
     "authors": [
         {
-            "name": "Victor Yoalli",
-            "email": "victoryoalli@gmail.com",
-            "role": "Developer"
+            "name": "elmer rodriguez",
+            "email": "elrodriguez2423@gmail.com"
         }
     ],
     "require": {
         "php": "^8.0",
         "spatie/laravel-multitenancy": "^2.3",
     },
-
     "autoload": {
-        "psr-4": {
+        "psr-4":{
             "elrod\\MultitenancyImpersonate\\": "src"
         }
-    },
-
+    }
 }
