@@ -1,6 +1,6 @@
 {
     "name": "elrod/laravel-multitenancy-impersonate",
-    "description": "registra las actividades de los usuarios de su aplicaci\u0000n.
+    "description": "Laravel Multitenancy Impersonation from landlord to tenant",
     "authors": [
         {
             "name": "Victor Yoalli",
