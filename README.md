@@ -4,13 +4,6 @@ Laravel multitenancy impersonation from landlord to tenant.
 
 This package is made to be used with [Spatie Laravel Multitenancy](https://github.com/spatie/laravel-multitenancy).
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/victoryoalli/multitenancy-impersonate.svg?style=flat-square)](https://packagist.org/packages/victoryoalli/multitenancy-impersonate)
-[![Build Status](https://img.shields.io/travis/victoryoalli/multitenancy-impersonate/master.svg?style=flat-square)](https://travis-ci.org/victoryoalli/multitenancy-impersonate)
-[![Quality Score](https://img.shields.io/scrutinizer/g/victoryoalli/multitenancy-impersonate.svg?style=flat-square)](https://scrutinizer-ci.com/g/victoryoalli/multitenancy-impersonate)
-[![Total Downloads](https://img.shields.io/packagist/dt/victoryoalli/multitenancy-impersonate.svg?style=flat-square)](https://packagist.org/packages/victoryoalli/multitenancy-impersonate)
-
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
-
 ## Installation
 
 You can install the package via composer:
@@ -20,9 +13,11 @@ composer require elrod/laravel-multitenancy-impersonate
 ```
 ## Publish Config and Migrations
 ```bash
-php artisan vendor:publish --provider="elrod/laravel-multitenancy-impersonate"
+php artisan vendor:publish
 ```
-
+You will see list of things to publish:
+![Image text](https://drive.google.com/uc?export=download&id=1MZjiwRRu2cvgwwc9F1RzBlUknQmh2yyM)
+Select what you want to post by giving the package index number
 ## Usage
 
 ### Landlord Controller
@@ -39,7 +34,7 @@ class ImpersonateController
     {
         $tenant = Tenant::find($request->get('tenant_id'));
         $redirect_url = "https{$tenant->domain}/admin";
-        $impersonate = $this->impersonate($tenant,auth()->user(),$redirect_url)
+        $impersonate = $this->impersonate($tenant,auth()->user(),$redirect_url);
 
         $tenant_url = "https{$tenant->domain}/admin/impersonate";
 
