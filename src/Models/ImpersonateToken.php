@@ -9,19 +9,15 @@ class ImpersonateToken extends Model
 {
     use UsesTenantConnection;
 
-    protected $guarded = [];
+    protected $fillable = [
+        'token',
+        'impersonator_id',
+        'user_id',
+        'redirect_url',
+        'expired_at',
+        'auth_guard',
+        'impersonated_at',
+        'ip_address'
+    ];
 
-    public function scopeLive($query)
-    {
-        return $query->where('expired_at', '>', now())->whereNull('impersonated_at');
-    }
-
-    public function touch():bool
-    {
-        $this->impersonated_at = now();
-        $this->ip_address = request()->ip();
-        $this->user_id = auth()->id();
-
-        return $this->save();
-    }
 }

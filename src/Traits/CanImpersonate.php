@@ -16,7 +16,7 @@ trait CanImpersonate
     {
         $tenant->makeCurrent();
 
-        $redirect_url = $redirect_url ?? "https://{$tenant->domain}".config('multitenancy-impersonate.redirect_path', '/home');
+        $redirect_url = $redirect_url ?? "http://{$tenant->domain}".config('multitenancy-impersonate.redirect_path', '/admin');
         $auth_guard = $auth_guard ?? config('multitenancy-impersonate.auth_guard', 'web');
 
         $token = ImpersonateToken::create([
@@ -24,18 +24,29 @@ trait CanImpersonate
             'impersonator_id' => $user->id,
             'redirect_url' => $redirect_url,
             'expired_at' => now()->addSeconds(config('multitenancy-impersonate.ttl', 1)),
-            'auth_guard' => $auth_guard,
+            'auth_guard' => $auth_guard
         ]);
+        
         $tenant->forgetCurrent();
 
         return $token;
     }
 
-    public function impersonate(string $token, Authenticatable $user)
+    public function impersonate(Tenant $tenant,string $token, Authenticatable $user)
     {
-        $impersonate = ImpersonateToken::live()->whereToken($token)->firstOrFail();
+        $tenant->makeCurrent();
+        $impersonate = ImpersonateToken::where('expired_at', '>', now())
+            ->whereNull('impersonated_at')
+            ->where('token',$token)
+            ->firstOrFail();
+
         auth($impersonate->auth_guard)->login($user);
-        $impersonate->touch();
+
+        $impersonate->update([
+            'impersonated_at'   => now(),
+            'ip_address'        => request()->ip(),
+            'user_id'           => auth()->id()
+        ]);
 
         return redirect($impersonate->redirect_url, 301);
     }

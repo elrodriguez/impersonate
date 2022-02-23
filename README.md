@@ -22,6 +22,8 @@ Select what you want to post by giving the package index number
 
 ### Landlord Controller
 The Landlord controller creates the token and redirects to the tenant for automatic login.
+
+The redirectTenant method can be used after creating a tenant
 ``` php
 
 use elrod\MultitenancyImpersonate\Traits\CanImpersonate;
@@ -30,51 +32,23 @@ class ImpersonateController
 {
     use CanImpersonate;
 
-    public function store(Request $request)
+    public function redirectTenant($id)
     {
-        $tenant = Tenant::find($request->get('tenant_id'));
-        $redirect_url = "https{$tenant->domain}/admin";
-        $impersonate = $this->impersonate($tenant,auth()->user(),$redirect_url);
+        $tenant = Tenant::find($id);
+        
+        $redirect_url = "http://{$tenant->domain}/admin";
 
-        $tenant_url = "https{$tenant->domain}/admin/impersonate";
+        $token = $this->createToken($tenant,auth()->user(),$redirect_url);
 
-        return redirect("{$tenant_url}/{$impersonate->token}");
+        $this->impersonate($tenant,$token->token,auth()->user());
+            
+        $tenant_url = "http://{$tenant->domain}/admin/impersonate";
+
+        return redirect("{$tenant_url}/{$token->token}");
     }
 
 }
 ```
-
-### Impersonate Tenant Controller
-Impersonates to the user of your choice. Needs a valid token and the user to be impersonated.
-Will be redirected to the provided `$redirect_url`.
-```php
-use CanImpersonate;
-
-public function __invoke(Request $request, string $token)
-    {
-        $user = User::firstOrFail();
-
-        return $this->impersonate($token, $user);
-    }
-```
-
-### Testing
-
-``` bash
-composer test
-```
-
-### Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
-
-### Security
-
-If you discover any security related issues, please email victoryoalli@gmail.com instead of using the issue tracker.
 
 ## Credits
 
