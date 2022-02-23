@@ -1,6 +1,6 @@
 <?php
 
-namespace VictorYoalli\MultitenancyImpersonate;
+namespace Elrod\MultitenancyImpersonate;
 
 use Illuminate\Support\ServiceProvider;
 

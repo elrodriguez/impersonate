@@ -1,6 +1,6 @@
 <?php
 
-namespace VictorYoalli\MultitenancyImpersonate\Models;
+namespace Elrod\MultitenancyImpersonate\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;

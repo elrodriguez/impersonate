@@ -23,7 +23,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VictorYoalli\\MultitenancyImpersonate\\MultitenancyImpersonateServiceProvider"
+                "elrod\\MultitenancyImpersonate\\MultitenancyImpersonateServiceProvider"
             ]
         }
     },

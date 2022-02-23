@@ -1,11 +1,11 @@
 <?php
 
-namespace VictorYoalli\MultitenancyImpersonate\Traits;
+namespace Elrod\MultitenancyImpersonate\Traits;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Str;
 use Spatie\Multitenancy\Models\Tenant;
-use VictorYoalli\MultitenancyImpersonate\Models\ImpersonateToken;
+use Elrod\MultitenancyImpersonate\Models\ImpersonateToken;
 
 /**
  *
