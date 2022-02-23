@@ -50,6 +50,26 @@ class ImpersonateController
 }
 ```
 
+Create the routes
+
+``` php
+Route::get('/admin/impersonate/{token}', function ($token) {
+
+    $impersonate = ImpersonateToken::where('token',$token)->first();
+
+    $user = User::find($impersonate->user_id);
+
+    Auth::login($user);
+
+    return redirect()->route('admin');
+
+});
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/admin', function () {
+    return 'Hello World';
+})->name('admin');
+```
+
 ## Credits
 
 - [Victor Yoalli](https://github.com/victoryoalli)
