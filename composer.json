@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4":{
-            "elrod\\MultitenancyImpersonate\\": "src"
+            "Elrod\\MultitenancyImpersonate\\": "src"
         }
     },
 	"config": {
