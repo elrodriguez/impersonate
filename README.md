@@ -16,11 +16,11 @@ This is where your description should go. Try and limit it to a paragraph or two
 You can install the package via composer:
 
 ```bash
-composer require victoryoalli/laravel-multitenancy-impersonate
+composer require elrod/laravel-multitenancy-impersonate
 ```
 ## Publish Config and Migrations
 ```bash
-php artisan vendor:publish
+php artisan vendor:publish --provider="elrod/laravel-multitenancy-impersonate"
 ```
 
 ## Usage
@@ -29,7 +29,7 @@ php artisan vendor:publish
 The Landlord controller creates the token and redirects to the tenant for automatic login.
 ``` php
 
-use VictorYoalli\MultitenancyImpersonate\Traits\CanImpersonate;
+use elrod\MultitenancyImpersonate\Traits\CanImpersonate;
 
 class ImpersonateController
 {

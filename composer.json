@@ -16,5 +16,17 @@
         "psr-4":{
             "elrod\\MultitenancyImpersonate\\": "src"
         }
-    }
+    },
+	"config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "VictorYoalli\\MultitenancyImpersonate\\MultitenancyImpersonateServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
